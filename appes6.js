@@ -27,8 +27,11 @@ class UI {
     // Clear Fields
     clearFields() {
         document.getElementById('title').value = '';
+        document.getElementById('title').style.borderColor = 'gray';
         document.getElementById('author').value = '';
+        document.getElementById('author').style.borderColor = 'gray';
         document.getElementById('isbn').value = '';
+        document.getElementById('isbn').style.borderColor = 'gray';
     }
 
     // Error Alert
@@ -129,7 +132,7 @@ document.getElementById('book-form').addEventListener('submit', function (e) {
     const ui = new UI();
 
     // Validate
-    if (title === '' || author === '' || isbn === '') {
+    if (validateTitle() || validateAuthor() || validateISBN()) {
         // Error alert
         ui.showAlert('Please fill in all fields', 'error');
     } else {
@@ -165,46 +168,70 @@ document.getElementById('book-list').addEventListener('click', function (e) {
 });
 
 // Validate Title
-document.querySelector('#title').addEventListener('keyup', function(){
+document.querySelector('#title').addEventListener('keyup', validateTitle);
+
+function validateTitle(){
     // Get form Values
     const title = document.getElementById('title');
 
     // REG var
     var regName = /^[a-zA-Z-'. ]+$/;
 
-    if (regName.test(title.value)) {
-        title.style.borderColor = 'green';
-    } else {
-        title.style.borderColor = 'red';
+    if (title === '') {
+        return true;
+    }else{
+        if (regName.test(title.value)) {
+            title.style.borderColor = 'green';
+            return false;
+        } else {
+            title.style.borderColor = 'red';
+            return true;
+        }
     }
-});
+}
 
 // Validate Author
-document.querySelector('#author').addEventListener('keyup', function () {
+document.querySelector('#author').addEventListener('keyup', validateAuthor);
+
+function validateAuthor() {
     // Get form Values
     const author = document.getElementById('author');
 
     // REG var
     var regName = /^[a-zA-Z-'. ]+$/;
 
-    if (regName.test(author.value)) {
-        author.style.borderColor = 'green';
+    if (title === '') {
+        return true;
     } else {
-        author.style.borderColor = 'red';
+        if (regName.test(author.value)) {
+            author.style.borderColor = 'green';
+            return false;
+        } else {
+            author.style.borderColor = 'red';
+            return true;
+        }
     }
-});
+}
 
 // Validate ISBN
-document.querySelector('#isbn').addEventListener('keyup', function () {
+document.querySelector('#isbn').addEventListener('keyup', validateISBN);
+
+function validateISBN() {
     // Get form Values
     const isbn = document.getElementById('isbn');
 
     // REG var
     var regName = /^[0-9]+$/;
 
-    if (regName.test(isbn.value)) {
-        isbn.style.borderColor = 'green';
+    if (title === '') {
+        return true;
     } else {
-        isbn.style.borderColor = 'red';
+        if (regName.test(isbn.value)) {
+            isbn.style.borderColor = 'green';
+            return false;
+        } else {
+            isbn.style.borderColor = 'red';
+            return true;
+        }
     }
-});
+}
