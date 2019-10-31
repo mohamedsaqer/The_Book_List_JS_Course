@@ -21,6 +21,17 @@
         .error {
             background: red;
         }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            /* display: none; <- Crashes Chrome on hover */
+            -webkit-appearance: none;
+            margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+        }
+
+        input[type=number] {
+            -moz-appearance:textfield; /* Firefox */
+        }
         </style>
 </head>
 <body>
@@ -39,7 +50,7 @@
 
             <div class="">
                 <label for="isbn">ISBN#</label>
-                <input type="text" id="isbn" class="u-full-width">
+                <input type="number" step="0.01" id="isbn" class="u-full-width">
             </div>
 
             <div class="">

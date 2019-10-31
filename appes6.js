@@ -163,3 +163,48 @@ document.getElementById('book-list').addEventListener('click', function (e) {
 
     e.preventDefault();
 });
+
+// Validate Title
+document.querySelector('#title').addEventListener('keyup', function(){
+    // Get form Values
+    const title = document.getElementById('title');
+
+    // REG var
+    var regName = /^[a-zA-Z-'. ]+$/;
+
+    if (regName.test(title.value)) {
+        title.style.borderColor = 'green';
+    } else {
+        title.style.borderColor = 'red';
+    }
+});
+
+// Validate Author
+document.querySelector('#author').addEventListener('keyup', function () {
+    // Get form Values
+    const author = document.getElementById('author');
+
+    // REG var
+    var regName = /^[a-zA-Z-'. ]+$/;
+
+    if (regName.test(author.value)) {
+        author.style.borderColor = 'green';
+    } else {
+        author.style.borderColor = 'red';
+    }
+});
+
+// Validate ISBN
+document.querySelector('#isbn').addEventListener('keyup', function () {
+    // Get form Values
+    const isbn = document.getElementById('isbn');
+
+    // REG var
+    var regName = /^[0-9]+$/;
+
+    if (regName.test(isbn.value)) {
+        isbn.style.borderColor = 'green';
+    } else {
+        isbn.style.borderColor = 'red';
+    }
+});
